@@ -7,7 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<nav class='navbar'>
+	<div class='navbar-inner'>
+		<ul class='nav'>
+			<li> <%=link_to 'Inicio', root_path %> </li>
+			<% if current_user %>
+				<li> <%=link_to 'Cerrar sesión', logout_path %></li>
+			<% else %>
+			    <li> <%=link_to 'Iniciar sesión', new_session_path %> </li>
+				
+			<% end %>			
+			<li> <%=link_to 'Crear cuenta',new_identity_path %> </li>
+			<li> <%=link_to 'Vender',new_product_path %> </li>
+		</ul>
+	</div>
+</nav>
 <%= yield %>
 
 </body>

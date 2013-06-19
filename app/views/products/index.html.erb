@@ -1,0 +1,23 @@
+<h1>Productos de tu interes</h1>
+
+<ul class='thumbnails' id='products'>
+    <% @products.each do |product| %>
+    <div id='product'>
+    <li class= 'span3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <b> <%= link_to product.nombre, product %> </b>
+            </div>
+            <%if product.has_photo? %>
+                <%= image_tag product.photo_path %>
+            <% end %>
+            <div class='caption'>
+                <b> precio: <%= product.precio %> </b>
+            </div>
+        </div>
+        </li>
+    </div>
+    
+    <% end %>
+</ul>
+<br />

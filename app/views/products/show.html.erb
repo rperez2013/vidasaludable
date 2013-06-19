@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @product.nombre %>
+</p>
+<p>
+  <% if @product.has_photo? %>
+     <div class='thumbnail'>
+     <div class='caption'>
+      <%= image_tag @product.photo_path%>
+     </div>
+     </div>
+  <% else %>
+    <b> Problema al subir la foto </b>   
+  <% end %>
+</p>
+<p>
+  <b>Categoria:</b>
+  <%= @product.categoria %>
+</p>
+
+<p>
+  <b>Precio:</b>
+  <%= @product.precio %>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>
