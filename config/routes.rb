@@ -8,11 +8,11 @@ Vidasaludable::Application.routes.draw do
   resources :identities
   resources :users
   #root to: "sessions#new"
-  root to: "products#index"
+  root to: "welcome#index"
+  #root to: "products#index"
   match "/auth/:provider/callback", to: "sessions#create"
   match "/auth/failure", to: "sessions#failure"
   match "/logout", to: "sessions#destroy", :as => "logout"
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -68,5 +68,5 @@ Vidasaludable::Application.routes.draw do
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
+   match ':controller(/:action(/:id))(.:format)'
 end

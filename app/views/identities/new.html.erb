@@ -2,43 +2,50 @@
   <h2> Debe cerrar sesión para poder crear una cuenta </h2>
 
 <% else %>
-<h1>New Account</h1>
+<h1>Nueva cuenta</h1>
 
 <%= form_tag "/auth/identity/register" do %>
   <% if @identity && @identity.errors.any? %>
     <div class="error_messages">
+      <div class="alert alert-error">
       <h2><%= pluralize(@identity.errors.count, "error") %> prohibited this account from being saved:</h2>
+      
       <ul>
       <% @identity.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
+    </div>
   <% end %>
   <div class="field">
-    <%= label_tag :name %><br>
+    <%= label_tag "Nombre completo" %><br>
     <%= text_field_tag :name, @identity.try(:name) %>
   </div>
     <div class="field">
-    <%= label_tag :address %><br>
-    <%= text_field_tag :address %>
+    <%= label_tag "Ubicación" %><br>
+    <%= text_field_tag :location %>
   </div>
-      <div class="field">
-    <%= label_tag :birth %><br>
+  <div class="field">
+    <%= label_tag "Fecha nacimiento" %><br>
     <%= date_select :birth, start_year: 1950, end_year: 2000 %>
   </div>
   <div class="field">
-    <%= label_tag :email %><br>
+    <%= label_tag "E-mail" %><br>
     <%= text_field_tag :email, @identity.try(:email) %>
   </div>
   <div class="field">
-    <%= label_tag :password %><br>
+    <%=label_tag "Tipo" %>
+    <%= select_tag(:nickname, options_for_select(['Proveedor','Comprador'])) %>
+  </div>
+  <div class="field">
+    <%= label_tag "Contraseña" %><br>
     <%= password_field_tag :password %>
   </div>
   <div class="field">
-    <%= label_tag :password_confirmation %><br>
+    <%= label_tag "Confirmar contraseña" %><br>
     <%= password_field_tag :password_confirmation %>
   </div>
-  <div class="actions"><%= submit_tag "Register" %></div>
+  <div class="actions"><%= submit_tag "Registar",:class=>"btn btn-primary" %></div>
 <% end %> 
 <% end %>

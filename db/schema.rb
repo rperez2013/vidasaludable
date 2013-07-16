@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130611211311) do
+ActiveRecord::Schema.define(:version => 20130716022913) do
 
   create_table "identities", :force => true do |t|
     t.string   "name"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20130611211311) do
     t.string   "password_digest"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "tipo"
+    t.date     "birth"
+    t.string   "address"
+    t.string   "nickname"
+    t.string   "location"
   end
 
   create_table "products", :force => true do |t|
@@ -29,7 +34,11 @@ ActiveRecord::Schema.define(:version => 20130611211311) do
     t.string   "extension"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "email"
   end
+
+  add_index "products", ["user_id"], :name => "index_products_on_user_id"
 
   create_table "sessions", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -42,6 +51,9 @@ ActiveRecord::Schema.define(:version => 20130611211311) do
     t.string   "provider"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "tipo"
+    t.string   "email"
+    t.string   "location"
   end
 
 end

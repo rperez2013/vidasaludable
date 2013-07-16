@@ -1,0 +1,4 @@
+<%=form_tag  products_path, :method => 'get' do %>
+<%= text_field_tag  :search, params[:search], :class=>"search-query span2", :placeholder=>"Buscar productos"%>
+<%=submit_tag "Search", :nombre => nil, :class=>"btn"%>
+<% end %>

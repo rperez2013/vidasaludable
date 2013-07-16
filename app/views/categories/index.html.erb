@@ -1,0 +1,57 @@
+<% if current_user %>
+<ul class='thumbnails' id='categories'>
+    
+    <div id='bebidas'>
+    <li class= 'span3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <b><%=link_to 'Bebidas',products_path(@product, :categoria=>"Bebidas") %></b>
+            </div>
+                <%= image_tag "/photo_store/Categoria/bebida.jpg"%>
+        </div>
+        </li>
+    </div>
+    <div id='frutas'>
+    <li class= 'span3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <b><%=link_to 'Frutas',products_path(@product, :categoria=>"Frutas") %></b>
+            </div>
+                <%= image_tag "/photo_store/Categoria/fruta.jpg"%>
+        </div>
+        </li>
+    </div>
+    <div id='verduras'>
+    <li class= 'span3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <b><%=link_to 'Verduras',products_path(@product, :categoria=>"Verduras") %></b>
+            </div>
+                <%= image_tag "/photo_store/Categoria/verduras.jpg"%>
+        </div>
+        </li>
+    </div>
+    <div id='platos'>
+    <li class= 'span3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <b><%=link_to 'Platos preparados',products_path(@product, :categoria=>"Preparados") %></b>
+            </div>
+                <%= image_tag "/photo_store/Categoria/plato.jpg"%>
+        </div>
+        </li>
+    </div>
+    <div id='todos'>
+    <li class= 'span3'>
+        <div class='thumbnail'>
+            <div class='caption'>
+                <b><%=link_to 'Todos los productos',products_path %></b>
+            </div>
+                <%= image_tag "/photo_store/Categoria/todos.jpg"%>
+        </div>
+        </li>
+    </div>                  
+</ul>
+<%else %>
+    <h2> Debe iniciar sesión para ver las publicaciones </h2>    
+<% end %>

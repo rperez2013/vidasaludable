@@ -2,25 +2,42 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    
+    if(params[:categoria]!=nil)
+     # @products = Product.find(:all, :conditions=>{:categoria=>[params[:categoria]]})
+      @products =Product.search2(params[:search],params[:categoria])
+    elsif (params[:user_id]!=nil)
+      #filtro por los productos que posee un proveedor
+      @products =Product.misproductos(params[:user_id])
+    else
 
+      @products =Product.search(params[:search])
+    end
+  #  @products = Product.order(:id).page(params[:page]).per(20)
+    if @products.class == Array
+      @products = Kaminari.paginate_array(@products).page(params[:page]).per(4)
+    else
+      @products = @products.page(params[:page]).per(4) # if @posts is AR::Relation object
+    end 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @products }
     end
   end
-
+ 
   # GET /products/1
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
-
+    #puts YAML::dump(@product.user_id)
+    if (@product.user_id!=nil)     
+      @user= Product.findUser(@product.user_id)
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @product }
-    end
+    end    
   end
-
   # GET /products/new
   # GET /products/new.json
   def new
@@ -80,4 +97,7 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  # DELETE /products/1
+  # DELETE /products/1.json
+ 
 end

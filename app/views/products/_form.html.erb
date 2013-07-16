@@ -10,28 +10,37 @@
       </ul>
     </div>
   <% end %>
-
+<!--
   <div class="field">
     <%= f.label :codigo %><br />
     <%= f.text_field :codigo %>
-  </div>
+  </div> -->
   <div class="field">
-    <%= f.label :nombre %><br />
+    <%= f.label "Nombre producto" %><br />
     <%= f.text_field :nombre %>
   </div>
   <div class="field">
-    <%= f.label :categoria %><br />
-    <%= f.text_field :categoria %>
+    <%= f.label "Categoría "%><br />
+    <%= f.select(:categoria, options_for_select(['Bebidas','Frutas','Verduras','Preparados'])) %>
   </div>
   <div class="field">
-    <%= f.label :precio %><br />
+    <%= f.label "Precio" %><br />
     <%= f.number_field :precio %>
   </div>
   <div class="field">
-    <%=f.label :photo %>
-    <%=f.file_field :photo %>
+    <%=f.label "Imagen" %>
+    <%=f.file_field :photo   %>
   </div>
+  <li>Datos personales</li>
+    <div class="field">
+    <%=f.label :user_id %>
+    <%= f.select(:user_id, options_for_select([current_user.id])) %>
+  </div>
+  <div class="field">
+    <%=f.label :email %>
+    <%= f.select(:email, options_for_select([current_user.email])) %>
+  </div>    
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Crear producto', :class=>"btn btn-primary" %>
   </div>
 <% end %>
